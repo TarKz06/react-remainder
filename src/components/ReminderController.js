@@ -8,33 +8,30 @@ export const ReminderController = ({ children }) => {
     { text: "tar", box: false, star: true },
   
   ]
-  const [input , setInput] = useState('')
-  const [text, setText] = useState('')
+  const [input , setInput] = useState("")
   const [reminderlist, setReminderlist] = useState(listElement)
   const [index, setIndex] = useState(-1)
-
   
 // add list
   const onAdd = () => {
-    if(index == -1){
+    if(index === -1){
       setReminderlist([
         ...reminderlist,
         {
           // textbox : check box : fev box
-          text: input, box: false, star: false }
+          text: input, box: false, star: false 
+        }
       ])
-    }
-    else {
+    }else{
       let tmp = reminderlist
-      tmp[index] = {
-          ...tmp[index],
-          title: input
+      tmp[index]={
+        ...tmp[index],
+        text: input
       }
-      setInput("")
-      setIndex(-1)
+    }
+    setInput("")
+    setIndex(-1)
   }
-  };
-
   // remove list
   const onDelete = (item) => (
     setReminderlist([
@@ -42,19 +39,28 @@ export const ReminderController = ({ children }) => {
     ])
 )
 
-    
+    const onEdit = (item) =>{
+      setInput(item.text)
+      const editIndex = reminderlist.findIndex(temp => temp === item)
+      setIndex(editIndex)
+    }
 
 
   return (
     <ReminderContext.Provider
       value={{
-        text,
-        setText,
-        onAdd,
-        onDelete,
+
+        // State
+        input,
         reminderlist,
+
+        // function 
+        onAdd,
+        onEdit,
+        onDelete, 
         setInput,
-        input
+        
+        
       }}
     >
       {children}

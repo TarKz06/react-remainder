@@ -10,6 +10,7 @@ export default function Input() {
         <TextField
           id="standard-basic"
           label="Text"
+          variant="outlined"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />

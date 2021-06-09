@@ -11,9 +11,10 @@ import FavouriteButton from "../favorite/FavouriteButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { useReminderContext } from "./ReminderController";
+import CreateIcon from "@material-ui/icons/Create";
 
 export default function ReminderList() {
-  const { reminderlist , onDelete } = useReminderContext();
+  const { reminderlist, onDelete, onEdit } = useReminderContext();
 
   return (
     <List>
@@ -34,8 +35,12 @@ export default function ReminderList() {
             </ListItemIcon>
             <ListItemText id={labelId} primary={item.text} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="comments">
-                <EditIcon />
+              <IconButton
+                edge="end"
+                aria-label="comments"
+                onClick={() => onEdit(item)}
+              >
+                <CreateIcon />
               </IconButton>
               <IconButton
                 edge="end"
