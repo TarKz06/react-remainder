@@ -14,7 +14,7 @@ import { useReminderContext } from "./ReminderController";
 import CreateIcon from "@material-ui/icons/Create";
 
 export default function ReminderList() {
-  const { reminderlist, onDelete, onEdit } = useReminderContext();
+  const { reminderlist, onDelete, onEdit,onCheckBox } = useReminderContext();
 
   return (
     <List>
@@ -29,6 +29,7 @@ export default function ReminderList() {
                 checked={item.box}
                 tabIndex={-1}
                 disableRipple
+                onClick={() => onCheckBox(item)}
                 inputProps={{ "aria-labelledby": labelId }}
               />
               <FavouriteButton checked={item.star} />
