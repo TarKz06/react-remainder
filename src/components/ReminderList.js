@@ -11,8 +11,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { useReminderContext } from "./ReminderController";
 import CreateIcon from "@material-ui/icons/Create";
+import "./style.css";
 export default function ReminderList() {
-  const { reminderlist, onDelete, onEdit, onCheckBox ,onCheckFev } = useReminderContext();
+  const { reminderlist, onDelete, onEdit, onCheckBox, onCheckFev } =
+    useReminderContext();
 
   return (
     <List>
@@ -20,39 +22,44 @@ export default function ReminderList() {
         const labelId = `checkbox-list-label-${key}`;
 
         return (
-          <ListItem key={key} role={undefined} dense button>
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={item.box}
-                tabIndex={-1}
-                disableRipple
-                onClick={() => onCheckBox(item)}
-                inputProps={{ "aria-labelledby": labelId }}
-              />
-              <FavouriteButton
-                checked={item.star}
-                onClick={() => onCheckFev(item)}
-              />
-            </ListItemIcon>
-            <ListItemText id={labelId} primary={item.text} />
-            <ListItemSecondaryAction>
-              <IconButton
-                edge="end"
-                aria-label="comments"
-                onClick={() => onEdit(item)}
-              >
-                <CreateIcon />
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="comments"
-                onClick={() => onDelete(item)}
-              >
-                <DeleteIcon style={{ color: "red" }} />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
+          <div className="container">
+            <div className="test1">
+              <ListItem key={key} role={undefined} dense button>
+                <ListItemIcon>
+                  <Checkbox
+                    style={{color:"#867666"}}
+                    edge="start"
+                    checked={item.box}
+                    tabIndex={-1}
+                    disableRipple
+                    onClick={() => onCheckBox(item)}
+                    inputProps={{ "aria-labelledby": labelId }}
+                  />
+                  <FavouriteButton
+                    checked={item.star}
+                    onClick={() => onCheckFev(item)}
+                  />
+                </ListItemIcon>
+                <ListItemText id={labelId} primary={item.text} />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge="end"
+                    aria-label="comments"
+                    onClick={() => onEdit(item)}
+                  >
+                    <CreateIcon />
+                  </IconButton>
+                  <IconButton
+                    edge="end"
+                    aria-label="comments"
+                    onClick={() => onDelete(item)}
+                  >
+                    <DeleteIcon style={{ color: "red" }} />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            </div>
+          </div>
         );
       })}
     </List>
