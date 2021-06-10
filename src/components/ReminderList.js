@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -12,9 +11,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { useReminderContext } from "./ReminderController";
 import CreateIcon from "@material-ui/icons/Create";
-
 export default function ReminderList() {
-  const { reminderlist, onDelete, onEdit,onCheckBox } = useReminderContext();
+  const { reminderlist, onDelete, onEdit, onCheckBox ,onCheckFev } = useReminderContext();
 
   return (
     <List>
@@ -32,7 +30,10 @@ export default function ReminderList() {
                 onClick={() => onCheckBox(item)}
                 inputProps={{ "aria-labelledby": labelId }}
               />
-              <FavouriteButton checked={item.star} />
+              <FavouriteButton
+                checked={item.star}
+                onClick={() => onCheckFev(item)}
+              />
             </ListItemIcon>
             <ListItemText id={labelId} primary={item.text} />
             <ListItemSecondaryAction>

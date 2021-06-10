@@ -1,9 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
-import ReminderList from "./ReminderList";
+import React, {  useContext, useState } from "react";
 export const ReminderContext = React.createContext();
 export const useReminderContext = () => useContext(ReminderContext);
+const listElement = [{ text: "tar", box: false, star: false }]
 export const ReminderController = ({ children }) => {
-  const listElement = [{ text: "tar", box: false, star: true }];
   const [input, setInput] = useState("");
   const [reminderlist, setReminderlist] = useState(listElement);
   const [index, setIndex] = useState(-1);
@@ -44,11 +43,21 @@ export const ReminderController = ({ children }) => {
 
   //Check Box
   const onCheckBox = (item) =>{
-    const editIndex = reminderlist.findIndex((temp) => temp === item);
+    const editIndex = reminderlist.findIndex(temp => temp === item)
     let temp = reminderlist
     temp[editIndex] = {
       ...temp[editIndex],
       box: !temp[editIndex].box
+    }
+    setReminderlist([...temp])
+  }
+
+  const onCheckFev = (item) =>{
+    const editIndex = reminderlist.findIndex(temp => temp === item)
+    let temp = reminderlist
+    temp[editIndex] = {
+      ...temp[editIndex],
+      star: !temp[editIndex].star
     }
     setReminderlist([...temp])
   }
@@ -65,7 +74,8 @@ export const ReminderController = ({ children }) => {
         onEdit,
         onDelete,
         setInput,
-        onCheckBox
+        onCheckBox,
+        onCheckFev
       }}
     >
       {children}
